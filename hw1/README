@@ -1,0 +1,45 @@
+(1) What to install
+
+Install python3 if there is no python3 by:
+sudo apt-get install python3
+
+Install pip3 by:
+sudo apt-get install -y python3-pip
+
+Install all requirements by:
+pip3 install -r requirements.txt
+
+
+(2) How to generate RSA keys
+
+You should use rsa_keys.py to generate rsa key pairs before running client.py and server.py:
+
+python3 rsa_keys.py [filename]
+
+It will generate a rsa key pair. The private key file is "filename". The public key file is "filename.pub". The format of key pair is ssh format. They will be saved in the same directory as rsa_key.py's.
+
+
+(3) How to run programs
+
+You should run both program in the same directory as the RSA key files and the file to be encrypted and signed. All files should use relevant path.
+
+For client:
+python3 client.py [password] [filename] [action] [server ip] [port] [client's private key file] [server's public key file]
+
+For example:
+python3 client.py 12345678901234567890 plaintext.txt b localhost 9999 client_rsa server_rsa.pub
+
+For server:
+python3 server.py [port] [mode] [server's private key file] [client's public key file]
+
+For example:
+python3 server.py 9999 v server_rsa client_rsa.pub
+
+
+(4) Other files
+requirements.txt: all required python modules
+client_rsa: client's RSA private key
+client_rsa.pub: client's RSA public key
+server_rsa: server's RSA private key
+server_rsa.pub: server's RSA public key
+plaintext.txt: a file to be encrypted and signed

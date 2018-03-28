@@ -1,0 +1,51 @@
+1. 
+(a) A shared secret K is exchanged; a secure connection is established; authentication accomplished
+Bob decrypts the cipher, gets g^a, and choose a random b so that the secret K is (g^a)^b = g^(ab). He sends g^b to Alice so that Alice can also gain the secret K by (g^b)^a = g^(ab).
+Bob sends Alice a nonce C1, and Alice sends Bob a nonce C2. Bob returns Alice C2. It's a handshake process to establish a connection between a client and a server. 
+If Alice or Bob doesn't have K, they cannot decrypt the random numbers.
+
+(b) It can defend a normal man-in-the-middle attack, because the attacker cannot know g^a and g^b, or forge a legitimate ciphertext of g^a' or g^b', which should be forged by the attacker to fool Alice and Bob. So he can't forge shared keys g^(ab') and g^(ba').
+
+(c) When doing stream ciphers, avoid to use ECB mode to encrypt the channel since it is not safe enough and its pattern is easier to analyze.
+
+(d) If an attacker infiltrates the server Bob and gets the hash of Alice's password, he can do the normal man-in-the-middle attack to decrypt the following ciphertext.
+
+2. 
+If the server Bob supports multi-session, the protocol is vulnerable to replay attacks. Bob cannot be sure he is talking to Alice. The attacker firstly starts a session with Bob and sends him a nonce. Bob will return his rb. Then the attacker starts another session and sends Bob rb as his own nonce. Bob will return E_Kab(rb). Now the first session can successfully forge a legitimate ciphertext of rb by sending E_Kab(rb) to Bob. Then Bob will be fooled.
+
+If Bob doesn't support multi-session, but the nonces ra and rb are chosen from a small space, the protocol is vulnerable to replay attacks. Bob cannot be sure he is talking to Alice. An attacker sends ra to Bob, and Bob returns E_Kab(ra). The attacker records ra with E_Kab(ra) in a hash table. He tries many times contacts until Bob returns some rb, which is equal to some recorded ra that the attacker has chosen before. Then the attacker can retrieve the cipher value of this ra from the hash table, forge it as rb's legitimate ciphertext, and send it to Bob. Then Bob will be fooled.
+
+3.
+The higher frequency of calling it is, the less false negative rate of authentication it will be. Because if customers call the bank frequently in a short time, since their voice doesn't change too much in a short time, the bank is able to successfully accept the authentication. So the successful cases will account for a large proportion of all cases. Therefore, the false negative rate will be low. Otherwise, for some extreme example, there's only one customer in a bank and he only calls once in ten years. And he is very likely to fail the verification. So the negative rate is 100%!
+
+4.
+The web browser downloads the website' certificate, then uses the public key of CA to verify the signature of the website's certificate with the signing algorithm provided by the website's certificate. If the signature matches, then the browser confirms with CA that the address listed in the certificate is the one that I'm supposed to open. The web browser should also check the certificate for the valid period, usage matching what the certificate is being used for, adhering to the required format. If all succeed, the verification accomplishes.
+
+5.
+When negotiating with clients about TLS version, middleboxes exists, some servers didn't implement correctly, which led to vulnerability. So when deploying TLS 1.2, insecure downgrading was used. But due to significant vulnerability, it was removed. However, TLS 1.3 introduced a huge amount of changes on TLS 1.2, even removed some traditional features, which led to incompatibility. And this caused high failure rate of TLS 1.3 for server's connection. So the draft is still being revised to recover some traditional features in order to make it look more like TLS 1.2. And it is still a struggle full of middleboxes. Therefore, due to wrong use by developers and design flaws of incompatibility, TLS 1.3 is still not widely used and additional drafts of the RFC are required.
+
+6.
+(a) 20.
+
+(b) TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (0xc030)
+
+(c) 3 certificates. 
+(1) issuer: Apple IST CA 2 - G1
+    Algorithm: sha256WithRSAEncryption
+(2) issuer: GeoTrust Global CA
+    Algorithm: sha256WithRSAEncryption
+(3) issuer: GeoTrust Global CA
+    Algorithm: sha1WithRSAEncryption
+
+(d) GeoTrust Global CA
+
+(e) Yes. Diffie-Hellman.
+Pubkey Length: 65
+Pubkey: 04:52:66:5c:c1:5c:ea:5c:05:f3:0c:90:a2:85:29:a7:cc:5a:96:dd:8e:de:53:d7:76:f4:d2:6f:43:69:72:2d:78:80:21:76:c8:85:51:e2:0b:5b:89:08:3d:82:c7:9d:4b:2e:e2:5f:13:9b:d3:4e:2b:e0:24:ca:8c:52:d2:ea:5f
+
+(f) 3 packets to 17.248.138.72
+
+(g) TLSv1.2
+
+
+
