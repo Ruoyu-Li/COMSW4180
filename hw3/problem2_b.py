@@ -13,10 +13,13 @@ if __name__ == '__main__':
 	# parse input file
 	with open(input_file, 'r') as f:
 		src = f.readline()
+		src, _ = src.split('\n')
 		dst = f.readline()
+		dst, _ = dst.split('\n')
 		sport = int(f.readline())
 		dport = int(f.readline())
 		get = f.readline()
+		
 
 	print(src, dst, sport, dport, get)
 	# establish TCP handshank, start from SYN packet
