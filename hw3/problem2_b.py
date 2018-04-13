@@ -11,11 +11,18 @@ if __name__ == '__main__':
 	input_file = args.input
 
 	# parse input file
+	with open(input_file, 'r') as f:
+		src = f.readline()
+		dst = f.readline()
+		sport = f.readline()
+		dport = f.readline()
+		get = f.readline()
 
 	# establish TCP handshank, start from SYN packet
-	syn = IP(dst='10.142.0.3')/TCP(dport=8000, flags='S')
+	syn = IP(src=src, dst=dst)/TCP(sport=sport, dport=dport, flags='S')
 	ans = sr1(syn)
-	print(ans)
-	request=IP(dst='10.142.0.3')/TCP(dport=8000, sport=ans[TCP].dport, seq=ans[TCP].ack, ack=ans[TCP].seq + 1, flags='A')/Raw(load='GET / HTTP/1.1\r\nHost: 10.142.0.3:8000\r\n')
+	print(ans.show())
+	# send packet with HTTP request message
+	request=IP(src=src, dst=dst)/TCP(dport=dport, sport=ans[TCP].dport, seq=ans[TCP].ack, ack=ans[TCP].seq + 1, flags='A')/Raw(load=get)
 	ans = sr1(syn)
-	print(ans)
+	print(ans.show())
