@@ -11,6 +11,12 @@ if __name__ == '__main__':
 	input_file = args.input
 
 	# parse input file
+	# remember inpartb.txt must be the same format as:
+	# src_ip
+	# des_ip
+	# src_port
+	# dst_port
+	# GET message
 	with open(input_file, 'r') as f:
 		src = f.readline()
 		src, _ = src.split('\n')
@@ -18,10 +24,8 @@ if __name__ == '__main__':
 		dst, _ = dst.split('\n')
 		sport = int(f.readline())
 		dport = int(f.readline())
-		get = f.readline()
-		
+		get = f.readline() + '/n'
 
-	print(src, dst, sport, dport, get)
 	# establish TCP handshank, start from SYN packet
 	syn = IP(src=src, dst=dst)/TCP(sport=sport, dport=dport, flags='S')
 	ans = sr1(syn)
