@@ -18,6 +18,7 @@ if __name__ == '__main__':
 		dport = int(f.readline())
 		get = f.readline()
 
+	print(src, dst, sport, dport, get)
 	# establish TCP handshank, start from SYN packet
 	syn = IP(src=src, dst=dst)/TCP(sport=sport, dport=dport, flags='S')
 	ans = sr1(syn)
