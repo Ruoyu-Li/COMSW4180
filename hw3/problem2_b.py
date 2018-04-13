@@ -14,8 +14,8 @@ if __name__ == '__main__':
 	with open(input_file, 'r') as f:
 		src = f.readline()
 		dst = f.readline()
-		sport = f.readline()
-		dport = f.readline()
+		sport = int(f.readline())
+		dport = int(f.readline())
 		get = f.readline()
 
 	# establish TCP handshank, start from SYN packet
