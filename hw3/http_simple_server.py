@@ -12,6 +12,7 @@ import string,cgi,time,random,threading;
 from os import curdir,sep;
 from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
 import sys
+import socket
 
 class MyHandler(BaseHTTPRequestHandler):
    
@@ -89,7 +90,7 @@ def main():
       port = 9000;
       if len(sys.argv) > 1:
           port = int(sys.argv[1])
-          server = HTTPServer(('',port), MyHandler);
+          server = HTTPServer((socket.gethostbyname(socket.gethostname()),port), MyHandler);
           print("Started HTTP Server")
           server.serve_forever();
    except KeyboardInterrupt:
