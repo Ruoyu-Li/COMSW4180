@@ -1,0 +1,37 @@
+tcpdump: listening on eth0, link-type EN10MB (Ethernet), capture size 262144 bytes
+23:41:02.195985 IP (tos 0x0, ttl 64, id 1, offset 0, flags [none], proto TCP (6), length 40)
+    instance-1.c.networksecurity-195504.internal.60000 > instance-2.c.networksecurity-195504.internal.8000: Flags [S], cksum 0x7121 (correct), seq 0, win 8192, length 0
+	0x0000:  4201 0a8e 0001 4201 0a8e 0002 0800 4500  B.....B.......E.
+	0x0010:  0028 0001 0000 4006 65af 0a8e 0002 0a8e  .(....@.e.......
+	0x0020:  0003 ea60 1f40 0000 0000 0000 0000 5002  ...`.@........P.
+	0x0030:  2000 7121 0000                           ..q!..
+23:41:02.197085 IP (tos 0x0, ttl 64, id 0, offset 0, flags [DF], proto TCP (6), length 44)
+    instance-2.c.networksecurity-195504.internal.8000 > instance-1.c.networksecurity-195504.internal.60000: Flags [S.], cksum 0x9184 (correct), seq 1688343653, ack 1, win 28400, options [mss 1420], length 0
+	0x0000:  4201 0a8e 0002 4201 0a8e 0001 0800 4500  B.....B.......E.
+	0x0010:  002c 0000 4000 4006 25ac 0a8e 0003 0a8e  .,..@.@.%.......
+	0x0020:  0002 1f40 ea60 64a2 1465 0000 0001 6012  ...@.`d..e....`.
+	0x0030:  6ef0 9184 0000 0204 058c                 n.........
+23:41:02.197104 IP (tos 0x0, ttl 64, id 47283, offset 0, flags [DF], proto TCP (6), length 40)
+    instance-1.c.networksecurity-195504.internal.60000 > instance-2.c.networksecurity-195504.internal.8000: Flags [R], cksum 0x911e (correct), seq 1, win 0, length 0
+	0x0000:  4201 0a8e 0001 4201 0a8e 0002 0800 4500  B.....B.......E.
+	0x0010:  0028 b8b3 4000 4006 6cfc 0a8e 0002 0a8e  .(..@.@.l.......
+	0x0020:  0003 ea60 1f40 0000 0001 0000 0000 5004  ...`.@........P.
+	0x0030:  0000 911e 0000                           ......
+23:41:02.202075 IP (tos 0x0, ttl 64, id 1, offset 0, flags [none], proto TCP (6), length 40)
+    instance-1.c.networksecurity-195504.internal.60000 > instance-2.c.networksecurity-195504.internal.8000: Flags [S], cksum 0x7121 (correct), seq 0, win 8192, length 0
+	0x0000:  4201 0a8e 0001 4201 0a8e 0002 0800 4500  B.....B.......E.
+	0x0010:  0028 0001 0000 4006 65af 0a8e 0002 0a8e  .(....@.e.......
+	0x0020:  0003 ea60 1f40 0000 0000 0000 0000 5002  ...`.@........P.
+	0x0030:  2000 7121 0000                           ..q!..
+23:41:02.202256 IP (tos 0x0, ttl 64, id 0, offset 0, flags [DF], proto TCP (6), length 44)
+    instance-2.c.networksecurity-195504.internal.8000 > instance-1.c.networksecurity-195504.internal.60000: Flags [S.], cksum 0x391c (correct), seq 1688431820, ack 1, win 28400, options [mss 1420], length 0
+	0x0000:  4201 0a8e 0002 4201 0a8e 0001 0800 4500  B.....B.......E.
+	0x0010:  002c 0000 4000 4006 25ac 0a8e 0003 0a8e  .,..@.@.%.......
+	0x0020:  0002 1f40 ea60 64a3 6ccc 0000 0001 6012  ...@.`d.l.....`.
+	0x0030:  6ef0 391c 0000 0204 058c                 n.9.......
+23:41:02.202274 IP (tos 0x0, ttl 64, id 47284, offset 0, flags [DF], proto TCP (6), length 40)
+    instance-1.c.networksecurity-195504.internal.60000 > instance-2.c.networksecurity-195504.internal.8000: Flags [R], cksum 0x911e (correct), seq 1, win 0, length 0
+	0x0000:  4201 0a8e 0001 4201 0a8e 0002 0800 4500  B.....B.......E.
+	0x0010:  0028 b8b4 4000 4006 6cfb 0a8e 0002 0a8e  .(..@.@.l.......
+	0x0020:  0003 ea60 1f40 0000 0001 0000 0000 5004  ...`.@........P.
+	0x0030:  0000 911e 0000                           ......
