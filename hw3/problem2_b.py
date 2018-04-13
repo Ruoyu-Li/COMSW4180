@@ -10,16 +10,12 @@ if __name__ == '__main__':
 	args = parser.parse_args()
 	input_file = args.input
 
-	sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-	server_address = ('127.0.0.1', 8000)
-	try:
-		sock.connect(server_address)
-		print("success")
-		while 1:
-			pass
-	except ConnectionRefusedError:
-		print("server is closed")
-	finally:
-		sock.close()
+	# parse input file
 
-	# packet = IP(src='127.0.0.1', dst='127.0.0.1')/TCP(sport=9999,dport=8000)/Raw(load='GET / HTTP/1.1')
+	# establish TCP handshank, start from SYN packet
+	syn = IP(dst='10.142.0.3')/TCP(dport=8000, flags='S')
+	ans = sr1(syn)
+	print(ans)
+	request=IP(dst='10.142.0.3')/TCP(dport=8000, sport=ans[TCP].dport, seq=ans[TCP].ack, ack=ans[TCP].seq + 1, flags='A')/Raw(load='GET / HTTP/1.1\r\nHost: 10.142.0.3:8000\r\n')
+	ans = sr1(syn)
+	print(ans)
