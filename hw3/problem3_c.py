@@ -16,11 +16,13 @@ if __name__ == '__main__':
 	lo = '127.0.0.1'
 
 	# part 1
+	print("part 1:")
 	for port in range(4001, 4026):
 		pkt = IP(src=lo, dst=lo)/TCP(sport=sport, dport=port)
 		send(pkt, iface='lo')
 
 	# part 2
+	print("part 2:")
 	for i in range(5):
 		payload = random_word(10)
 		pkt = IP(src=lo, dst=lo)/TCP(sport=sport, dport=dport)/Raw(load=payload)
