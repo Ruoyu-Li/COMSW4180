@@ -1,6 +1,7 @@
 import argparse
 from collections import Counter
 from time import time
+import codecs
 
 
 if __name__ == '__main__':
@@ -23,10 +24,10 @@ if __name__ == '__main__':
 	with open(input_file, 'rb') as f:
 		byte = f.read(n)
 		while byte != b"":
-			if byte.hex() in c:
-				c[byte.hex()] += 1
+			if codecs.encode(byte, 'hex') in c:
+				c[codecs.encode(byte, 'hex')] += 1
 			else:
-				c[byte.hex()] = 0
+				c[codecs.encode(byte, 'hex')] = 0
 			f.seek(n - s, 1)
 			byte = f.read(n)
 	# get 30 most common grams then sort out most common 20
@@ -54,7 +55,7 @@ if __name__ == '__main__':
 	with open(output_file, 'w') as f:
 		f.write("20 most common grams and frequency:\n")
 		for i in range(20):
-			f.write(common[i][0] + ' ' + str(common[i][1]) + '\n')
+			f.write(str(common[i][0]) + ' ' + str(common[i][1]) + '\n')
 
 
 
