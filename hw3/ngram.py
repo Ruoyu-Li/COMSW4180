@@ -55,7 +55,7 @@ if __name__ == '__main__':
 	with open(output_file, 'w') as f:
 		f.write("20 most common grams and frequency:\n")
 		for i in range(20):
-			f.write(str(common[i][0]) + ' ' + str(common[i][1]) + '\n')
+			f.write(common[i][0].decode("utf-8") + ' ' + str(common[i][1]) + '\n')
 
 
 
