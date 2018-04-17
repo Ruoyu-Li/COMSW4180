@@ -1,16 +1,16 @@
 Problem 1:
 script name: ngram.py
 
-required: python3
+required: python3.6
 
 usage:
 python3 ngram.py [length of ngrams] [length of slide] [name of file to analyze] [name of output file]
 
-output.txt is my output file when n=3 and s=2, input file is file1. The process takes time 0.05133175849914551 s.
+When n=3 and s=2, input file is file4 (the largest file), the process takes time 0.021346092224121094 s.
 
 
 Problem 2a:
-required: python2, scapy
+required: python2.7, scapy
 Scapy interactive mode is used
 
 Please read problem2_a.txt
@@ -19,7 +19,7 @@ Please read problem2_a.txt
 Problem 2b:
 script name: problem2_b.py, http_simple_server.py
 
-required: python2, scapy, provided simple http server (but I modified one line of code to get host ip instead of localhost ip)
+required: python2.7, scapy, provided simple http server (but I modified one line of code to get host ip instead of localhost ip)
 
 usage:
 On one machine: python http_simple_server.py [port]
@@ -36,7 +36,7 @@ Output tcpdump is in problem2_b.txt
 
 
 Problem 2c:
-required: python2, scapy
+required: python2.7, scapy
 
 usage:
 sudo python problem3_c.py [sport] [dport]

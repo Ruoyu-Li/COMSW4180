@@ -32,7 +32,6 @@ if __name__ == '__main__':
 			byte = f.read(n)
 	# get 30 most common grams then sort out most common 20
 	common = c.most_common(30)
-	print(common)
 	# get 20th gram then compare and get others that have the same frequency
 	candidates = []
 	for i in range(len(common)):
@@ -40,13 +39,11 @@ if __name__ == '__main__':
 			candidates.append(common[i])
 	# sort these grams, set the smallest ones into original list
 	candidates = sorted(candidates)
-	print(candidates)
 	j = 0
 	for i in range(20):
 		if common[i][1] == common[19][1]:
 			common[i] = candidates[j]
 			j += 1
-	print(common[:20])
 
 	# end to count time
 	end = time()
