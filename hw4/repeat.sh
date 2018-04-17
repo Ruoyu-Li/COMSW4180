@@ -12,7 +12,7 @@ while [ $cnt -le $max ]
 do
     echo $cnt
     wget www.example.com
-    ((cnt++))
+    cnt=$((cnt+1))
     echo "retrieved webpage, removing index.html files"
     rm index.html*
     sleep $sleepinterval
