@@ -1,0 +1,132 @@
+a. 
+
+b. 
+(1) File 1 and file 4 are similar.
+ssdeep:
+rl2929@instance-1:~/COMSW4180/hw3$ ssdeep -b file1
+ssdeep,1.1--blocksize:hash:hash,filename
+192:GJbXCoWzruCJ9qOIfxivTzkIv67XpMla40y5c9Si:qX5CJKxORva,"file1"
+
+ssdeep,1.1--blocksize:hash:hash,filename
+192:GJbXCoWzruCJ9qOIfxivTzkIv67XpMla40y5c9SiRERKlhqILk9DucYsszi35O2:qX5CJKxORvadFvLkYSszipr,"file4"
+
+rl2929@instance-1:~/COMSW4180/hw3$ ssdeep -b file1 > hashes.txt
+rl2929@instance-1:~/COMSW4180/hw3$ ssdeep -b -m hashes.txt file4
+file4 matches hashes.txt:file1 (79)
+
+Their ssdeep match score is a high (79). And their fuzzy hashes are similar in both value and blocksize.
+
+ngram:
+(venv) lee@LeedeAir:~/Desktop/Network_security/COMSW4180/hw3$ python ngram.py 2 1 file1 output.txt
+20 most common grams and frequency:
+0000 2498
+ffff 56
+0100 46
+0003 35
+0012 32
+4000 27
+1200 26
+2000 23
+0001 22
+0200 20
+0800 18
+1e60 16
+005f 16
+2060 16
+4889 15
+0002 14
+0300 14
+0008 13
+0004 12
+0e00 12
+
+(venv) lee@LeedeAir:~/Desktop/Network_security/COMSW4180/hw3$ python ngram.py 2 1 file4 output.txt
+20 most common grams and frequency:
+0000 2534
+0100 63
+ffff 56
+0003 38
+0012 32
+4000 27
+0001 27
+1200 27
+2000 26
+0200 23
+0800 20
+0002 19
+0008 17
+0300 16
+0004 16
+1e60 16
+005f 16
+2060 16
+4889 15
+0e00 12
+
+We can see that the most common grams in two files are siliar(such as 0000, ffff and 0100) and their frequencies are similar.
+
+
+(2) File 5 and file 6 are similar.
+ssdeep:
+rl2929@instance-1:~/COMSW4180/hw3$ ssdeep -b file5
+ssdeep,1.1--blocksize:hash:hash,filename
+96:S27REn2YBH9jCKkkbF1SZaS4PAm4qFdKZ34rcydaMEtfQ:S27RE2C4pu1S3/pqFdLrzw9tY,"file5"
+
+rl2929@instance-1:~/COMSW4180/hw3$ ssdeep -b file6
+ssdeep,1.1--blocksize:hash:hash,filename
+96:S27REn2YBH9jCKBUCckw7B2nayqV7dM4rcydaMEtfQ:S27RE2C4UZJIB2ndqHPrzw9tY,"file6"
+
+rl2929@instance-1:~/COMSW4180/hw3$ ssdeep -b file5 > hashes.txt
+rl2929@instance-1:~/COMSW4180/hw3$ ssdeep -b -m hashes.txt file6
+file6 matches hashes.txt:file5 (68)
+
+Their ssdeep match score is a high (68). And their fuzzy hashes are similar in both value and blocksize.
+
+ngram:
+(venv) lee@LeedeAir:~/Desktop/Network_security/COMSW4180/hw3$ python ngram.py 2 1 file5 output.txt
+20 most common grams and frequency:
+783c 1
+5978 1
+511a 1
+e304 1
+cb70 1
+a67d 1
+1534 1
+2eaf 1
+4fc7 1
+9bba 1
+c391 1
+adbe 1
+02aa 0
+1234 0
+358c 0
+3875 0
+3fc7 0
+4c04 0
+5ad9 0
+6449 0
+
+(venv) lee@LeedeAir:~/Desktop/Network_security/COMSW4180/hw3$ python ngram.py 2 1 file6 output.txt
+20 most common grams and frequency:
+ab67 1
+5c3f 1
+5978 1
+511a 1
+76d7 1
+2530 1
+bbcb 1
+467f 1
+a373 1
+a615 1
+1b50 1
+3094 1
+9793 1
+2a1a 1
+215d 1
+ce44 1
+7608 1
+adbe 1
+02aa 0
+358c 0
+
+We can see that the most common grams in two files are siliar (such as 5978 and 511a) and their frequencies are similar.
