@@ -1,0 +1,22 @@
+In one terminal:
+$ sudo .local/bin/scapy
+>>> packet = IP(dst='10.142.0.3')/ICMP()
+>>> answer = sr1(packet)
+>>> answer
+<IP  version=4 ihl=5 tos=0x0 len=28 id=47186 flags= frag=0 ttl=64 proto=icmp chksum=0xad6e src=10.142.0.3 dst=10.142.0.2 options=[] |<ICMP  type=echo-reply code=0 chksum=0xffff id=0x0 seq=0x0 |>>
+>>> answer.summary()
+'IP / ICMP 10.142.0.3 > 10.142.0.2 echo-reply 0'
+
+In another terminal:
+$ sudo tcpdump -i eth0 -vv -XX icmp
+tcpdump: listening on eth0, link-type EN10MB (Ethernet), capture size 262144 bytes
+15:36:26.838359 IP (tos 0x0, ttl 64, id 1, offset 0, flags [none], proto ICMP (1), length 28)
+    instance-1.c.networksecurity-195504.internal > instance-2.c.networksecurity-195504.internal: ICMP echo request, id 0, seq 0, length 8
+	0x0000:  4201 0a8e 0001 4201 0a8e 0002 0800 4500  B.....B.......E.
+	0x0010:  001c 0001 0000 4001 65c0 0a8e 0002 0a8e  ......@.e.......
+	0x0020:  0003 0800 f7ff 0000 0000                 ..........
+15:36:26.839351 IP (tos 0x0, ttl 64, id 47186, offset 0, flags [none], proto ICMP (1), length 28)
+    instance-2.c.networksecurity-195504.internal > instance-1.c.networksecurity-195504.internal: ICMP echo reply, id 0, seq 0, length 8
+	0x0000:  4201 0a8e 0002 4201 0a8e 0001 0800 4500  B.....B.......E.
+	0x0010:  001c b852 0000 4001 ad6e 0a8e 0003 0a8e  ...R..@..n......
+	0x0020:  0002 0000 ffff 0000 0000                 ..........
