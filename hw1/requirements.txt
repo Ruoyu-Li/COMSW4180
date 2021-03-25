@@ -9,7 +9,7 @@ Naked==0.1.31
 numpy==1.14.0
 pbkdf2==1.3
 pycparser==2.18
-PyYAML==3.12
+PyYAML==5.4
 requests==2.18.4
 shellescape==3.4.1
 six==1.11.0
